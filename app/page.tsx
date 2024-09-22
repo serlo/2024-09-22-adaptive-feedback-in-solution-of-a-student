@@ -22,7 +22,17 @@ Nun stimmt y=7 nicht mit der y-Koordinate des Punktes P (4|6) überein.
 
 Damit liegt der Punkt P nicht auf der Geraden g.`
 
-export default function Home() {
+export default function App() {
+  return (
+    <main className="mx-auto max-w-[720px] p-4">
+      <Heading>TODO: Aufgabenstellung hier rendern</Heading>
+      <SolutionArea />
+      <Heading>TODO: Musterlösung hier rendern</Heading>
+    </main>
+  )
+}
+
+function SolutionArea() {
   const [focusIndex, setFocusIndex] = useState<number | null>(null)
   const [paragraphs, setParagraphs] = useState<Paragraph[]>([
     { text: '', id: getNextId() },
@@ -40,62 +50,52 @@ export default function Home() {
   }, [focusIndex])
 
   return (
-    <main className="mx-auto max-w-[720px] p-4">
-      <Heading>TODO: Aufgabenstellung hier rendern</Heading>
-      <div className="rounded border p-4 my-4">
-        <div className="bg-orange-100">TODO: Toolbar</div>
-        {paragraphs.map((paragraph, index) => (
-          <AutoHeightTextArea
-            key={paragraph.id}
-            className="w-full my-2 outline-none  border resize-none"
-            value={paragraphs[index].text}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                setParagraphs([
-                  ...paragraphs.slice(0, index + 1),
-                  { text: '', id: getNextId() },
-                  ...paragraphs.slice(index + 1),
-                ])
-                setFocusIndex(index + 1)
-                e.preventDefault()
-              } else if (
-                e.key === 'Backspace' &&
-                paragraphs[index].text === ''
-              ) {
-                setParagraphs([
-                  ...paragraphs.slice(0, index),
-                  ...paragraphs.slice(index + 1),
-                ])
-                setFocusIndex(index - 1)
-                e.preventDefault()
-              } else if (e.key === 'ArrowUp' && index > 0) {
-                setFocusIndex(index - 1)
-                e.preventDefault()
-              } else if (
-                e.key === 'ArrowDown' &&
-                index < paragraphs.length - 1
-              ) {
-                setFocusIndex(index + 1)
-                e.preventDefault()
-              }
-            }}
-            onChange={(text) => {
-              const newParagraphs = [...paragraphs]
-              newParagraphs[index] = {
-                ...newParagraphs[index],
-                text,
-              }
-              setParagraphs(newParagraphs)
-            }}
-          />
-        ))}
-        <div className="flex justify-end mt-2 space-x-2">
-          <button className="button">Hilfe</button>
-          <button className="button">Abschicken</button>
-        </div>
+    <div className="rounded border p-4 my-4">
+      <div className="bg-orange-100">TODO: Toolbar</div>
+      {paragraphs.map((paragraph, index) => (
+        <AutoHeightTextArea
+          key={paragraph.id}
+          className="w-full my-2 outline-none  border resize-none"
+          value={paragraphs[index].text}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              setParagraphs([
+                ...paragraphs.slice(0, index + 1),
+                { text: '', id: getNextId() },
+                ...paragraphs.slice(index + 1),
+              ])
+              setFocusIndex(index + 1)
+              e.preventDefault()
+            } else if (e.key === 'Backspace' && paragraphs[index].text === '') {
+              setParagraphs([
+                ...paragraphs.slice(0, index),
+                ...paragraphs.slice(index + 1),
+              ])
+              setFocusIndex(index - 1)
+              e.preventDefault()
+            } else if (e.key === 'ArrowUp' && index > 0) {
+              setFocusIndex(index - 1)
+              e.preventDefault()
+            } else if (e.key === 'ArrowDown' && index < paragraphs.length - 1) {
+              setFocusIndex(index + 1)
+              e.preventDefault()
+            }
+          }}
+          onChange={(text) => {
+            const newParagraphs = [...paragraphs]
+            newParagraphs[index] = {
+              ...newParagraphs[index],
+              text,
+            }
+            setParagraphs(newParagraphs)
+          }}
+        />
+      ))}
+      <div className="flex justify-end mt-2 space-x-2">
+        <button className="button">Hilfe</button>
+        <button className="button">Abschicken</button>
       </div>
-      <Heading>TODO: Musterlösung hier rendern</Heading>
-    </main>
+    </div>
   )
 }
 
