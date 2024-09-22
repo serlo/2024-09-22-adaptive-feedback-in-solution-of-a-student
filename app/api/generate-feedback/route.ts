@@ -123,12 +123,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         })
 
         controller.enqueue(
-          encoder.encode(
-            JSON.stringify({
-              openAIResponse,
-              content: openAIResponse.choices[0]?.message?.content,
-            }),
-          ),
+          encoder.encode(openAIResponse.choices[0]?.message?.content ?? 'null'),
         )
 
         controller.close()
