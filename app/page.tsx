@@ -37,13 +37,21 @@ export default function App() {
       {' '}
       <main className="mx-auto max-w-[720px] p-4">
         <div>
-          TODO: Aufgabenstellung hier rendern
+          <b>
+            TODO: Passende Überschrift / Aufgabe ist
+            https://de.serlo.org/mathe/295513/aufgabengruppe
+          </b>
+          <br />
+          <b>
+            TODO: Aufgabenstellung hier rendern, so dass es wie aus serlo.org
+            aussieht
+          </b>
           <br />
           <br /> {exercise}
         </div>
         <SolutionArea />
         <div>
-          TODO: Musterlösung hier rendern
+          <b>TODO: Musterlösung hier so rendern wie auf serlo.org</b>
           <br />
           <br /> {solution}
         </div>
@@ -101,7 +109,9 @@ function SolutionArea() {
 
   return (
     <div className="rounded border p-4 my-4">
-      <div className="bg-orange-100">TODO: Toolbar</div>
+      <div className="bg-orange-100">
+        TODO: Toolbar des Serlo-Text-Plugins rendern
+      </div>
       {paragraphs.map((paragraph, index) => {
         const specificFeedback = feedback?.specificFeedback?.find(
           (x) => x.paragraphId === paragraph.id,
