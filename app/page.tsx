@@ -60,6 +60,15 @@ export default function Home() {
                   ])
                   setFocusIndex(index - 1)
                   e.preventDefault()
+                } else if (e.key === 'ArrowUp' && index > 0) {
+                  setFocusIndex(index - 1)
+                  e.preventDefault()
+                } else if (
+                  e.key === 'ArrowDown' &&
+                  index < paragraphs.length - 1
+                ) {
+                  setFocusIndex(index + 1)
+                  e.preventDefault()
                 }
               }}
               onChange={(text) => {
