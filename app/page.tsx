@@ -151,6 +151,17 @@ function SolutionArea() {
                   text,
                 }
                 setParagraphs(newParagraphs)
+                setFeedback((prev) => {
+                  if (prev === null) {
+                    return null
+                  }
+                  return {
+                    ...prev,
+                    specificFeedback: prev.specificFeedback.filter(
+                      (x) => x.paragraphId !== paragraph.id,
+                    ),
+                  }
+                })
               }}
             />
             {specificFeedback && paragraph.text ? (
