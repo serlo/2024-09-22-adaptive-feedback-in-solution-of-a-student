@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import React, {
   useState,
   Component,
@@ -55,6 +56,7 @@ function SolutionArea() {
   const [paragraphs, setParagraphs] = useState<Paragraph[]>([
     { text: '', id: getNextId() },
   ])
+  const [feedback, setFeedback] = useState<Feedback | null>(null)
 
   // TOOO: Add possibility to stop fetching feedback
   const fetchFeedback = useMutation({
@@ -74,7 +76,7 @@ function SolutionArea() {
       return response.json() as Promise<Feedback>
     },
     onSuccess: (data) => {
-      console.log(data)
+      setFeedback(data)
     },
   })
 
@@ -139,6 +141,14 @@ function SolutionArea() {
           Abschicken
         </button>
       </div>
+      {fetchFeedback.isPending || feedback !== null ? (
+        <div className="flex justify-start space-x-4 mt-4">
+          <Image src="/birdie.svg" alt="Birdie" width={50} height={50} />
+          <p className="rounded bg-blue-100 p-2 border border-gray-400">
+            {fetchFeedback.isPending ? 'Loading' : feedback?.generalFeedback}
+          </p>
+        </div>
+      ) : null}
     </div>
   )
 }
