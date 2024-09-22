@@ -80,6 +80,11 @@ function SolutionArea() {
     },
   })
 
+  const updateFeedback = () => {
+    fetchFeedback.mutate()
+    setFeedback(null)
+  }
+
   useEffect(() => {
     if (focusIndex !== null) {
       const textArea = document.querySelectorAll('textarea')[focusIndex]
@@ -94,50 +99,69 @@ function SolutionArea() {
   return (
     <div className="rounded border p-4 my-4">
       <div className="bg-orange-100">TODO: Toolbar</div>
-      {paragraphs.map((paragraph, index) => (
-        <AutoHeightTextArea
-          key={paragraph.id}
-          className="w-full my-2 outline-none  border resize-none"
-          value={paragraphs[index].text}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              setParagraphs([
-                ...paragraphs.slice(0, index + 1),
-                { text: '', id: getNextId() },
-                ...paragraphs.slice(index + 1),
-              ])
-              setFocusIndex(index + 1)
-              e.preventDefault()
-            } else if (e.key === 'Backspace' && paragraphs[index].text === '') {
-              setParagraphs([
-                ...paragraphs.slice(0, index),
-                ...paragraphs.slice(index + 1),
-              ])
-              setFocusIndex(index - 1)
-              e.preventDefault()
-            } else if (e.key === 'ArrowUp' && index > 0) {
-              setFocusIndex(index - 1)
-              e.preventDefault()
-            } else if (e.key === 'ArrowDown' && index < paragraphs.length - 1) {
-              setFocusIndex(index + 1)
-              e.preventDefault()
-            }
-          }}
-          onChange={(text) => {
-            const newParagraphs = [...paragraphs]
-            newParagraphs[index] = {
-              ...newParagraphs[index],
-              text,
-            }
-            setParagraphs(newParagraphs)
-          }}
-        />
-      ))}
+      {paragraphs.map((paragraph, index) => {
+        const specificFeedback = feedback?.specificFeedback?.find(
+          (x) => x.paragraphId === paragraph.id,
+        )
+
+        return (
+          <>
+            <AutoHeightTextArea
+              key={paragraph.id}
+              className="w-full my-2 outline-none  border resize-none"
+              value={paragraphs[index].text}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setParagraphs([
+                    ...paragraphs.slice(0, index + 1),
+                    { text: '', id: getNextId() },
+                    ...paragraphs.slice(index + 1),
+                  ])
+                  setFocusIndex(index + 1)
+                  e.preventDefault()
+                } else if (
+                  e.key === 'Backspace' &&
+                  paragraphs[index].text === ''
+                ) {
+                  setParagraphs([
+                    ...paragraphs.slice(0, index),
+                    ...paragraphs.slice(index + 1),
+                  ])
+                  setFocusIndex(index - 1)
+                  e.preventDefault()
+                } else if (e.key === 'ArrowUp' && index > 0) {
+                  setFocusIndex(index - 1)
+                  e.preventDefault()
+                } else if (
+                  e.key === 'ArrowDown' &&
+                  index < paragraphs.length - 1
+                ) {
+                  setFocusIndex(index + 1)
+                  e.preventDefault()
+                }
+              }}
+              onChange={(text) => {
+                const newParagraphs = [...paragraphs]
+                newParagraphs[index] = {
+                  ...newParagraphs[index],
+                  text,
+                }
+                setParagraphs(newParagraphs)
+              }}
+            />
+            {specificFeedback ? (
+              <p className="mb-4 p-2 ml-16 border rounded">
+                {specificFeedback.feedback}
+              </p>
+            ) : null}
+          </>
+        )
+      })}
       <div className="flex justify-end mt-2 space-x-2">
-        <button className="button" onClick={() => fetchFeedback.mutate()}>
+        <button className="button" onClick={updateFeedback}>
           Hilfe
         </button>
-        <button className="button" onClick={() => fetchFeedback.mutate()}>
+        <button className="button" onClick={updateFeedback}>
           Abschicken
         </button>
       </div>
