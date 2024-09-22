@@ -1,6 +1,5 @@
 'use client'
 
-import { Heading } from '@radix-ui/themes'
 import React, {
   useState,
   Component,
@@ -35,9 +34,17 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       {' '}
       <main className="mx-auto max-w-[720px] p-4">
-        <Heading>TODO: Aufgabenstellung hier rendern</Heading>
+        <div>
+          TODO: Aufgabenstellung hier rendern
+          <br />
+          <br /> {exercise}
+        </div>
         <SolutionArea />
-        <Heading>TODO: Musterlösung hier rendern</Heading>
+        <div>
+          TODO: Musterlösung hier rendern
+          <br />
+          <br /> {solution}
+        </div>
       </main>
     </QueryClientProvider>
   )
