@@ -8,7 +8,15 @@ import React, {
   ChangeEvent,
   useEffect,
 } from 'react'
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+} from '@tanstack/react-query'
 import { cn } from './helper/cn'
+import { Feedback } from './types'
+
+const queryClient = new QueryClient()
 
 let currentId = 0
 
@@ -24,11 +32,14 @@ Damit liegt der Punkt P nicht auf der Geraden g.`
 
 export default function App() {
   return (
-    <main className="mx-auto max-w-[720px] p-4">
-      <Heading>TODO: Aufgabenstellung hier rendern</Heading>
-      <SolutionArea />
-      <Heading>TODO: Musterlösung hier rendern</Heading>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      {' '}
+      <main className="mx-auto max-w-[720px] p-4">
+        <Heading>TODO: Aufgabenstellung hier rendern</Heading>
+        <SolutionArea />
+        <Heading>TODO: Musterlösung hier rendern</Heading>
+      </main>
+    </QueryClientProvider>
   )
 }
 
@@ -37,6 +48,28 @@ function SolutionArea() {
   const [paragraphs, setParagraphs] = useState<Paragraph[]>([
     { text: '', id: getNextId() },
   ])
+
+  // TOOO: Add possibility to stop fetching feedback
+  const fetchFeedback = useMutation({
+    mutationFn: async () => {
+      const url = new URL('/api/generate-feedback', window.location.href)
+
+      url.searchParams.append('exercise', exercise)
+      url.searchParams.append('solution', solution)
+      url.searchParams.append('studentSolution', JSON.stringify(paragraphs))
+
+      const response = await fetch(url.toString(), { method: 'POST' })
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+      return response.json() as Promise<Feedback>
+    },
+    onSuccess: (data) => {
+      console.log(data)
+    },
+  })
 
   useEffect(() => {
     if (focusIndex !== null) {
@@ -92,8 +125,12 @@ function SolutionArea() {
         />
       ))}
       <div className="flex justify-end mt-2 space-x-2">
-        <button className="button">Hilfe</button>
-        <button className="button">Abschicken</button>
+        <button className="button" onClick={() => fetchFeedback.mutate()}>
+          Hilfe
+        </button>
+        <button className="button" onClick={() => fetchFeedback.mutate()}>
+          Abschicken
+        </button>
       </div>
     </div>
   )
