@@ -12,6 +12,16 @@ import { cn } from './helper/cn'
 
 let currentId = 0
 
+const exercise = `Gegeben ist die Gerade g:y=2x−1.
+
+Überprüfen Sie rechnerisch, ob der Punkt P(4∣6) auf der Geraden g liegt.`
+
+const solution = `x=4 in die Geradengleichung eingesetzt ergibt y=2⋅4−1=8−1=7
+
+Nun stimmt y=7 nicht mit der y-Koordinate des Punktes P (4|6) überein.
+
+Damit liegt der Punkt P nicht auf der Geraden g.`
+
 export default function Home() {
   const [focusIndex, setFocusIndex] = useState<number | null>(null)
   const [paragraphs, setParagraphs] = useState<Paragraph[]>([
