@@ -1,5 +1,6 @@
 'use client'
 
+import ReactDOM from 'react-dom'
 import Image from 'next/image'
 import React, {
   useState,
@@ -95,6 +96,8 @@ function SolutionArea() {
       }
     }
   }, [focusIndex])
+
+  ReactDOM.preload('/birdie.svg', { as: 'image' })
 
   return (
     <div className="rounded border p-4 my-4">
