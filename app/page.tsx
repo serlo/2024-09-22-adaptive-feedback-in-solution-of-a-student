@@ -121,7 +121,8 @@ function SolutionArea() {
                   e.preventDefault()
                 } else if (
                   e.key === 'Backspace' &&
-                  paragraphs[index].text === ''
+                  paragraphs[index].text === '' &&
+                  index > 0
                 ) {
                   setParagraphs([
                     ...paragraphs.slice(0, index),
@@ -149,8 +150,13 @@ function SolutionArea() {
                 setParagraphs(newParagraphs)
               }}
             />
-            {specificFeedback ? (
-              <p className="mb-4 p-2 ml-16 border rounded">
+            {specificFeedback && paragraph.text ? (
+              <p
+                className={cn(
+                  'mb-4 p-2 ml-16 border border-gray-400 rounded',
+                  specificFeedback.isCorrect ? 'bg-green-100' : 'bg-blue-100',
+                )}
+              >
                 {specificFeedback.feedback}
               </p>
             ) : null}
@@ -168,7 +174,12 @@ function SolutionArea() {
       {fetchFeedback.isPending || feedback !== null ? (
         <div className="flex justify-start space-x-4 mt-4">
           <Image src="/birdie.svg" alt="Birdie" width={50} height={50} />
-          <p className="rounded bg-blue-100 p-2 border border-gray-400">
+          <p
+            className={cn(
+              'rounded p-2 border border-gray-400',
+              feedback?.isCorrect ? 'bg-green-100' : 'bg-blue-100',
+            )}
+          >
             {fetchFeedback.isPending ? 'Loading' : feedback?.generalFeedback}
           </p>
         </div>
