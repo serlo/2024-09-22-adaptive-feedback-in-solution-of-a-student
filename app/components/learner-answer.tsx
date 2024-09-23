@@ -132,7 +132,7 @@ export function LearnerAnswer() {
           const isOpen = openFeedbackParagraphId === paragraph.id
 
           return (
-            <div className="relative group">
+            <div className="relative group" key={index}>
               <AnswerTextArea
                 paragraph={paragraph}
                 index={index}
