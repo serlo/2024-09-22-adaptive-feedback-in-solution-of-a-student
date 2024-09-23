@@ -16,6 +16,8 @@ import {
 } from '@tanstack/react-query'
 import { cn } from './helper/cn'
 import { Feedback } from './types'
+import { Breadcrumbs } from './components/breadcumbs'
+import { Task } from './components/task'
 
 const queryClient = new QueryClient()
 
@@ -35,26 +37,18 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {' '}
-      <main className="mx-auto max-w-[720px] p-4">
-        <div>
-          <b>
-            TODO: Passende Überschrift / Aufgabe ist
-            https://de.serlo.org/mathe/295513/aufgabengruppe
-          </b>
-          <br />
-          <b>
-            TODO: Aufgabenstellung hier rendern, so dass es wie aus serlo.org
-            aussieht
-          </b>
-          <br />
-          <br /> {exercise}
-        </div>
-        <SolutionArea />
-        <div>
-          <b>TODO: Musterlösung hier so rendern wie auf serlo.org</b>
-          <br />
-          <br /> {solution}
-        </div>
+      <main className="mx-auto max-w-[720px] pt-12 pb-40">
+        <Breadcrumbs />
+        <Task>
+          <>
+            <SolutionArea />
+            <div>
+              <b>TODO: Musterlösung hier so rendern wie auf serlo.org</b>
+              <br />
+              <br /> {solution}
+            </div>
+          </>
+        </Task>
       </main>
     </QueryClientProvider>
   )
