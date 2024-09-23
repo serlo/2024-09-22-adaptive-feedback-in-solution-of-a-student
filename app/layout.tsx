@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import './assets/katex/katex.css'
 import { Theme } from '@radix-ui/themes'
 
 export const metadata: Metadata = {
