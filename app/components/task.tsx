@@ -1,6 +1,7 @@
 import { faFile, faSquareArrowUpRight } from '@fortawesome/free-solid-svg-icons'
 import { FaIcon } from './fa-icon'
 import { SerloRenderer } from '@serlo/editor'
+import { SampleSolution } from './sample-solution'
 
 export function Task({ children }: { children: JSX.Element }) {
   return (
@@ -95,37 +96,130 @@ export function Task({ children }: { children: JSX.Element }) {
               </div>
             </div>
           </div>{' '}
+          <SampleSolution />
         </li>
-        <li
-          id="295517"
-          className="serlo-exercise-wrapper serlo-grouped-exercise-wrapper mt-6 pt-2 [&amp;>div]:border-none"
-        >
+        <li className="serlo-exercise-wrapper serlo-grouped-exercise-wrapper mt-24 pt-2 [&amp;>div]:border-none">
           <div className="relative">
             <div className="absolute -right-8 -mt-1"></div>
             <div className="-mt-block">
-              <div id="2794da7f" className="my-block">
-                <SerloRenderer
-                  editorVariant="serlo-org"
-                  state={{
-                    plugin: 'rows',
-                    state: [
-                      {
-                        plugin: 'text',
-                        state: [
-                          {
-                            type: 'p',
-                            children: [
-                              {
-                                text: 'Erklären Sie, woran Sie anhand der Funktionsgleichungen zweier Geraden erkennen können, dass die Geraden zueinander parallel sind.',
-                              },
-                            ],
+              <SerloRenderer
+                editorVariant="serlo-org"
+                state={{
+                  plugin: 'rows',
+                  state: [
+                    {
+                      plugin: 'exercise',
+                      state: {
+                        content: {
+                          plugin: 'rows',
+                          state: [
+                            {
+                              plugin: 'text',
+                              state: [
+                                {
+                                  type: 'p',
+                                  children: [
+                                    {
+                                      text: 'Erklären Sie, woran Sie anhand der Funktionsgleichungen zweier Geraden erkennen können, dass die Geraden zueinander parallel sind.',
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        solution: {
+                          plugin: 'solution',
+                          state: {
+                            strategy: {
+                              plugin: 'text',
+                              state: [{ type: 'p', children: [{ text: '' }] }],
+                            },
+                            steps: {
+                              plugin: 'rows',
+                              state: [
+                                {
+                                  plugin: 'text',
+                                  state: [
+                                    {
+                                      type: 'p',
+                                      children: [
+                                        {
+                                          text: 'Gegeben sind die zwei Geraden ',
+                                        },
+                                        {
+                                          type: 'math',
+                                          src: 'g',
+                                          inline: true,
+                                          children: [{ text: '' }],
+                                        },
+                                        { text: ' und ' },
+                                        {
+                                          type: 'math',
+                                          src: 'h',
+                                          inline: true,
+                                          children: [{ text: '' }],
+                                        },
+                                        {
+                                          text: ' mit den folgenden Funktionsgleichungen:',
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                                {
+                                  plugin: 'text',
+                                  state: [
+                                    {
+                                      type: 'p',
+                                      children: [
+                                        { text: '' },
+                                        {
+                                          type: 'math',
+                                          src: 'g: y = m_1x+t_1\\\\h: y = m_2x + t_2',
+                                          inline: true,
+                                          children: [{ text: '' }],
+                                        },
+                                        { text: '' },
+                                      ],
+                                    },
+                                  ],
+                                },
+                                {
+                                  plugin: 'text',
+                                  state: [
+                                    {
+                                      type: 'p',
+                                      children: [
+                                        {
+                                          text: 'Wenn die Steigungen der beiden Geraden gleich sind, also wenn  ',
+                                        },
+                                        {
+                                          type: 'math',
+                                          src: 'm_1=m_2',
+                                          inline: true,
+                                          children: [{ text: '' }],
+                                        },
+                                        {
+                                          text: ',  dann sind die beiden Geraden parallel.',
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                            prerequisite: {
+                              id: '27781',
+                              title: 'Parallele Geraden',
+                            },
                           },
-                        ],
+                        },
                       },
-                    ],
-                  }}
-                />
-              </div>
+                    },
+                  ],
+                }}
+              />
             </div>
           </div>{' '}
         </li>

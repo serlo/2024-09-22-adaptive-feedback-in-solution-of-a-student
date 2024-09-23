@@ -42,11 +42,6 @@ export default function App() {
         <Task>
           <>
             <SolutionArea />
-            <div>
-              <b>TODO: Musterlösung hier so rendern wie auf serlo.org</b>
-              <br />
-              <br /> {solution}
-            </div>
           </>
         </Task>
       </main>
