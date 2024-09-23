@@ -41,7 +41,7 @@ export function Task({ children }: { children: JSX.Element }) {
           <div className="relative">
             <div className="absolute -right-8 -mt-1"></div>
             <div className="-mt-block">
-              <div className="mb-block relative -top-3 ">
+              <div className="mb-block relative -top-3">
                 {/* CONTENT */}
                 <SerloRenderer
                   state={{

@@ -12,3 +12,8 @@ export const Feedback = t.type({
   specificFeedback: t.array(SpecificFeedback),
 })
 export type Feedback = t.TypeOf<typeof Feedback>
+
+export interface Paragraph {
+  text: string
+  id: number
+}

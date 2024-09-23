@@ -32,6 +32,7 @@ __metadata:
     prettier: "npm:^3.3.3"
     ramda: "npm:^0.30.1"
     react: "npm:^18.3.1"
+    react-animate-height: "npm:^3.2.3"
     react-dom: "npm:^18.3.1"
     tailwindcss: "npm:^3.4.11"
     typescript: "npm:^5.6.2"
@@ -3717,6 +3718,16 @@ __metadata:
   version: 0.30.1
   resolution: "ramda@npm:0.30.1"
   checksum: 10c0/3ea3e35c80e1a1b78c23de0c72d3382c3446f42052b113b851f1b7fc421e33a45ce92e7aef3c705cc6de3812a209d03417af5c264f67126cda539fd66c8bea71
+  languageName: node
+  linkType: hard
+
+"react-animate-height@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "react-animate-height@npm:3.2.3"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/45b32b53e070c2a5dcde51616aa9ded9f1f17684239173d8df00513317126b8a6ec6099d232fd687e8060b0c7316bb236ce45f8ee0f8f89d9489fe9d24119acc
   languageName: node
   linkType: hard
 
