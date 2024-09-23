@@ -2,9 +2,12 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Breadcrumbs } from './components/breadcumbs'
-import { Task } from './components/task'
-import { LearnerAnswer } from './components/learner-answer'
+import dynamic from 'next/dynamic'
 
+const LearnerAnswer = dynamic(() => import('./components/learner-answer'), {
+  ssr: false,
+})
+const Task = dynamic(() => import('./components/task'), { ssr: false })
 const queryClient = new QueryClient()
 
 export default function App() {

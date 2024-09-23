@@ -3,7 +3,7 @@ import { FaIcon } from './fa-icon'
 import { SerloRenderer } from '@serlo/editor'
 import { SampleSolution } from './sample-solution'
 
-export function Task({ children }: { children: JSX.Element }) {
+export default function Task({ children }: { children: JSX.Element }) {
   return (
     <div>
       <h1 className="serlo-h1 mb-10 mt-8">

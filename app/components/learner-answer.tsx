@@ -27,7 +27,7 @@ Nun stimmt y=7 nicht mit der y-Koordinate des Punktes P (4|6) überein.
 
 Damit liegt der Punkt P nicht auf der Geraden g.`
 
-export function LearnerAnswer() {
+export default function LearnerAnswer() {
   const [focusIndex, setFocusIndex] = useState<number | null>(null)
   const [paragraphs, setParagraphs] = useState<Paragraph[]>([
     { text: '', id: getNextId() },
